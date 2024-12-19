@@ -1,70 +1,123 @@
-# function-app-tester MCP Server
+# Azure Table Storage MCP Server
 
-A test of responses from a Function App
-
-This is a TypeScript-based MCP server that implements a simple notes system. It demonstrates core MCP concepts by providing:
-
-- Resources representing text notes with URIs and metadata
-- Tools for creating new notes
-- Prompts for generating summaries of notes
+A TypeScript-based MCP server that enables interaction with Azure Table Storage directly through Cline. This tool allows you to query and manage data in Azure Storage Tables.
 
 ## Features
 
-### Resources
-- List and access notes via `note://` URIs
-- Each note has a title, content and metadata
-- Plain text mime type for simple content access
+- Query Azure Storage Tables with OData filter support
+- Get table schemas to understand data structure
+- List all tables in the storage account
+- Detailed error handling and response information
+- Simple configuration through connection string
 
-### Tools
-- `create_note` - Create new text notes
-  - Takes title and content as required parameters
-  - Stores note in server state
+## Installation
 
-### Prompts
-- `summarize_notes` - Generate a summary of all stored notes
-  - Includes all note contents as embedded resources
-  - Returns structured prompt for LLM summarization
+### Local Development Setup
 
-## Development
+1. Clone the repository:
+```powershell
+git clone https://github.com/zenturacp/mcp-azure-tablestorage.git
+cd mcp-azure-tablestorage
+```
 
-Install dependencies:
-```bash
+2. Install dependencies:
+```powershell
 npm install
 ```
 
-Build the server:
-```bash
+3. Build the server:
+```powershell
 npm run build
 ```
 
 For development with auto-rebuild:
-```bash
+```powershell
 npm run watch
 ```
 
-## Installation
+### Installing in Cline
 
-To use with Claude Desktop, add the server config:
+To use the Azure Table Storage server with Cline, you need to add it to your MCP settings configuration. The configuration file is located at:
 
-On MacOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-On Windows: `%APPDATA%/Claude/claude_desktop_config.json`
+Windows: `%APPDATA%\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json`
+
+Add the following to your configuration:
 
 ```json
 {
   "mcpServers": {
-    "function-app-tester": {
-      "command": "/path/to/function-app-tester/build/index.js"
+    "tablestore": {
+      "command": "node",
+      "args": ["C:/path/to/your/mcp-azure-tablestorage/build/index.js"],
+      "env": {
+        "AZURE_STORAGE_CONNECTION_STRING": "your_connection_string_here"  // Required: Your Azure Storage connection string
+      }
     }
   }
 }
 ```
 
+Replace `C:/path/to/your/mcp-azure-tablestorage` with the actual path where you cloned the repository.
+
+## Configuration
+
+The server uses the following environment variables:
+
+- `AZURE_STORAGE_CONNECTION_STRING`: Your Azure Storage account connection string
+
+## Usage in Cline
+
+Once installed, you can use the Azure Table Storage server through Cline. Here are some examples:
+
+1. Querying a table:
+```
+Query the Users table where PartitionKey is 'ACTIVE'
+```
+
+Cline will use the query_table tool with:
+```json
+{
+  "tableName": "Users",
+  "filter": "PartitionKey eq 'ACTIVE'"
+}
+```
+
+2. Getting table schema:
+```
+Show me the schema for the Orders table
+```
+
+Cline will use the get_table_schema tool with:
+```json
+{
+  "tableName": "Orders"
+}
+```
+
+3. Listing tables:
+```
+List all tables in the storage account
+```
+
+Cline will use the list_tables tool with:
+```json
+{}
+```
+
+## Development
+
 ### Debugging
 
-Since MCP servers communicate over stdio, debugging can be challenging. We recommend using the [MCP Inspector](https://github.com/modelcontextprotocol/inspector), which is available as a package script:
+Since MCP servers communicate over stdio, debugging can be challenging. The project includes the MCP Inspector for debugging:
 
-```bash
+```powershell
 npm run inspector
 ```
 
-The Inspector will provide a URL to access debugging tools in your browser.
+This will provide a URL to access debugging tools in your browser.
+
+### Project Structure
+
+- `src/index.ts`: Main server implementation with Azure Table Storage interaction logic
+- `build/`: Compiled JavaScript output
+- `package.json`: Project dependencies and scripts

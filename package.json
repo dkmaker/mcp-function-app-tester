@@ -1,8 +1,7 @@
 {
-  "name": "function-app-tester",
+  "name": "dkmaker-function-app-tester",
   "version": "0.1.0",
   "description": "A test of responses from a Function App",
-  "private": true,
   "license": "MIT",
   "type": "module",
   "bin": {

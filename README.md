@@ -1,4 +1,5 @@
 # Azure Table Storage MCP Server
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A TypeScript-based MCP server that enables interaction with Azure Table Storage directly through Cline. This tool allows you to query and manage data in Azure Storage Tables.
 
@@ -125,3 +126,7 @@ This will provide a URL to access debugging tools in your browser.
 - `src/index.ts`: Main server implementation with Azure Table Storage interaction logic
 - `build/`: Compiled JavaScript output
 - `package.json`: Project dependencies and scripts
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. This means you can use, modify, distribute, and sublicense the code freely, provided you include the original copyright notice and license terms.

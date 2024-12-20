@@ -2,6 +2,10 @@
 
 A TypeScript-based MCP server that enables interaction with Azure Table Storage directly through Cline. This tool allows you to query and manage data in Azure Storage Tables.
 
+<a href="https://glama.ai/mcp/servers/la0u86zue0">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/la0u86zue0/badge" />
+</a>
+
 ## Features
 
 - Query Azure Storage Tables with OData filter support

@@ -20,6 +20,39 @@ npm install dkmaker-mcp-function-app-tester
 - Detailed response information
 - Custom header support
 - Request body handling for POST/PUT methods
+- Authentication support:
+  - Basic Authentication (username/password)
+  - Bearer Token Authentication
+  - API Key Authentication (custom header)
+
+## Authentication
+
+The server supports two authentication methods that can be configured via environment variables:
+
+### Basic Authentication
+Set both environment variables to enable Basic Authentication:
+```bash
+AUTH_BASIC_USERNAME=your-username
+AUTH_BASIC_PASSWORD=your-password
+```
+
+### Bearer Token
+Set this environment variable to enable Bearer Token authentication:
+```bash
+AUTH_BEARER=your-token
+```
+
+### API Key
+Set both environment variables to enable API Key authentication:
+```bash
+AUTH_APIKEY_HEADER_NAME=X-API-Key  # The header name to use (e.g., X-API-Key, api-key, etc.)
+AUTH_APIKEY_VALUE=your-api-key     # The actual API key value
+```
+
+Note: Authentication precedence order:
+1. Basic Authentication (if username and password are set)
+2. Bearer Token (if token is set and Basic Auth is not configured)
+3. API Key (if header name and value are set, and no other auth is configured)
 
 ## Usage
 

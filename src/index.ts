@@ -10,6 +10,11 @@ import {
 import axios, { AxiosRequestConfig, Method } from 'axios';
 
 const BASE_URL = process.env.FUNCTION_APP_BASE_URL || 'http://localhost:7071/api';
+const AUTH_BASIC_USERNAME = process.env.AUTH_BASIC_USERNAME;
+const AUTH_BASIC_PASSWORD = process.env.AUTH_BASIC_PASSWORD;
+const AUTH_BEARER = process.env.AUTH_BEARER;
+const AUTH_APIKEY_HEADER_NAME = process.env.AUTH_APIKEY_HEADER_NAME;
+const AUTH_APIKEY_VALUE = process.env.AUTH_APIKEY_VALUE;
 
 interface TestEndpointArgs {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -25,6 +30,10 @@ const isValidTestEndpointArgs = (args: any): args is TestEndpointArgs => {
   if (args.headers !== undefined && typeof args.headers !== 'object') return false;
   return true;
 };
+
+const hasBasicAuth = () => AUTH_BASIC_USERNAME && AUTH_BASIC_PASSWORD;
+const hasBearerAuth = () => !!AUTH_BEARER;
+const hasApiKeyAuth = () => AUTH_APIKEY_HEADER_NAME && AUTH_APIKEY_VALUE;
 
 class FunctionAppTester {
   private server: Server;
@@ -117,6 +126,25 @@ class FunctionAppTester {
 
         if (['POST', 'PUT'].includes(request.params.arguments.method) && request.params.arguments.body) {
           config.data = request.params.arguments.body;
+        }
+
+        // Handle authentication based on environment variables
+        if (hasBasicAuth()) {
+          const base64Credentials = Buffer.from(`${AUTH_BASIC_USERNAME}:${AUTH_BASIC_PASSWORD}`).toString('base64');
+          config.headers = {
+            ...config.headers,
+            'Authorization': `Basic ${base64Credentials}`
+          };
+        } else if (hasBearerAuth()) {
+          config.headers = {
+            ...config.headers,
+            'Authorization': `Bearer ${AUTH_BEARER}`
+          };
+        } else if (hasApiKeyAuth()) {
+          config.headers = {
+            ...config.headers,
+            [AUTH_APIKEY_HEADER_NAME as string]: AUTH_APIKEY_VALUE
+          };
         }
 
         // Ensure endpoint starts with / and remove any trailing slashes

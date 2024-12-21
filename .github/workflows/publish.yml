@@ -38,11 +38,6 @@ jobs:
           skip-version-file: false
           skip-commit: false
 
-      - name: Update version in package.json
-        if: steps.changelog.outputs.skipped == 'false'
-        run: |
-          npm version ${{ steps.changelog.outputs.version }} --no-git-tag-version
-
       - name: Build
         run: npm run build
 

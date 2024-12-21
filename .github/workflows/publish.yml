@@ -48,15 +48,12 @@ jobs:
 
       - name: Create Release
         if: steps.changelog.outputs.skipped == 'false'
-        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ steps.changelog.outputs.version }}
-          release_name: v${{ steps.changelog.outputs.version }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
-          draft: false
-          prerelease: false
+        run: |
+          gh release create v${{ steps.changelog.outputs.version }} \
+            --title "Release v${{ steps.changelog.outputs.version }}" \
+            --notes "${{ steps.changelog.outputs.clean_changelog }}"
 
       - name: Publish to NPM
         if: steps.changelog.outputs.skipped == 'false'

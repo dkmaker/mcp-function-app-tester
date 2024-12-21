@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",
-    "axios": "^1.7.9"
+    "axios": "^1.7.9",
+    "conventional-changelog-cli": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",
@@ -47,5 +48,4 @@
   "engines": {
     "node": ">=18.0.0"
   }
-
 }

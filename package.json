@@ -1,6 +1,6 @@
 {
   "name": "dkmaker-mcp-function-app-tester",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A test of responses from a Function App",
   "license": "MIT",
   "type": "module",

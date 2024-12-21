@@ -23,5 +23,27 @@
   "devDependencies": {
     "@types/node": "^20.11.24",
     "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "mcp",
+    "azure",
+    "cline",
+    "sonnet",
+    "assistant",
+    "development",
+    "typescript"
+  ],
+  "author": "zenturacp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zenturacp/mcp-function-app-tester.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zenturacp/mcp-function-app-tester/issues"
+  },
+  "homepage": "https://github.com/zenturacp/mcp-function-app-tester#readme",
+  "engines": {
+    "node": ">=18.0.0"
   }
+
 }

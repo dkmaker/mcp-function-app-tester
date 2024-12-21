@@ -32,7 +32,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           git-message: 'chore(release): {version}'
-          preset: 'cli'
+          preset: 'conventionalcommits'
           tag-prefix: 'v'
           output-file: 'CHANGELOG.md'
           skip-version-file: true

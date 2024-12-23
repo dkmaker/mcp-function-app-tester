@@ -35,15 +35,15 @@
     "development",
     "typescript"
   ],
-  "author": "zenturacp",
+  "author": "dkmaker",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zenturacp/mcp-function-app-tester.git"
+    "url": "git+https://github.com/dkmaker/mcp-function-app-tester.git"
   },
   "bugs": {
-    "url": "https://github.com/zenturacp/mcp-function-app-tester/issues"
+    "url": "https://github.com/dkmaker/mcp-function-app-tester/issues"
   },
-  "homepage": "https://github.com/zenturacp/mcp-function-app-tester#readme",
+  "homepage": "https://github.com/dkmaker/mcp-function-app-tester#readme",
   "engines": {
     "node": ">=18.0.0"
   }

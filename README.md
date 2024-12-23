@@ -1,4 +1,5 @@
 # MCP Function App Tester
+[![smithery badge](https://smithery.ai/badge/dkmaker-mcp-function-app-tester)](https://smithery.ai/server/dkmaker-mcp-function-app-tester)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A TypeScript-based MCP server that enables testing of Azure Function Apps through Cline. This tool allows you to test and interact with Function App endpoints directly from your development environment.
@@ -9,6 +10,15 @@ A TypeScript-based MCP server that enables testing of Azure Function Apps throug
 
 ## Installation
 
+### Installing via Smithery
+
+To install Function App Tester for Claude Desktop automatically via [Smithery](https://smithery.ai/server/dkmaker-mcp-function-app-tester):
+
+```bash
+npx -y @smithery/cli install dkmaker-mcp-function-app-tester --client claude
+```
+
+### Manual Installation
 ```bash
 npm install dkmaker-mcp-function-app-tester
 ```

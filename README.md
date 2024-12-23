@@ -91,7 +91,7 @@ Example usage:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/zenturacp/mcp-function-app-tester.git
+git clone https://github.com/dkmaker/mcp-function-app-tester.git
 cd mcp-function-app-tester
 ```
 
